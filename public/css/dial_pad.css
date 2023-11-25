@@ -1,0 +1,96 @@
+* {
+  box-sizing: border-box;
+}
+
+
+.container {
+  border: solid 1px black;
+  max-width: 400px;
+  position: relative;
+}
+
+#dialed-input {
+  height: 170px;
+  .col-12 {
+    display: flex;
+    background: black;
+    input {
+      outline: 0;
+      background: transparent;
+      color: white;
+      border: 0;
+      flex: 1;
+      font-size: 30px;
+    }
+  }
+}
+
+#dial-pad {
+  background: black;
+  text-align: center;
+  .col-4 {
+    background: darken(gray, 10%);
+    border: solid 2px black;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 2px auto;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    &:hover {
+      background: darken(gray, 0);
+    }
+    span {
+      font-size: 16px;
+      color: lightgray;
+    }
+  }
+}
+
+
+#dial-pad #call-btn {
+  background: green;
+  &:hover {
+    background: lighten(green, 8%);
+  }
+}
+
+#modal {
+  background: lightgray;
+  height: 150px;
+  width: 350px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: 0.5s;
+  button {
+    background: none;
+    border: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 10px;
+    cursor: pointer;
+  }
+}
+
+#modal .fa-phone {
+  position: absolute;
+  top: 5px;
+  color: green;
+  font-size: 30px;
+}
+
+#modal.display {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
