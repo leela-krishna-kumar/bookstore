@@ -18,17 +18,6 @@ function dialNumber() {
 }
 
 function contactForm() {
-    // IF IT'S NOT A FULL NUMBER, DISPLAY MESSAGE
-    /*   if (displayNumber.value.length !== 10) {
-        message.innerText = "Enter a phone number";
-        modalPhoneIcon.style.display = "none";
-        modal.classList.add("display");
-    } else {
-        // DISPLAY DIALED NUMBER
-        message.innerText = `You dialed number ${displayNumber.value}`;
-        modal.classList.add("display");
-        modalPhoneIcon.style.display = "";
-    }   */
 
     return {
         message: "",
@@ -46,22 +35,36 @@ function contactForm() {
                 },
                 dialed_number: displayNumber.value,
             })
-                .then(() => {
-                    this.message =
-                        displayNumber.value + " sucessfully submitted!";
+                .then(response => {
+                    this.message = displayNumber.value + " sucessfully submitted!";
                     //  console.log("123");
 
-                    if (displayNumber.value.length !== 10) {
-                        message.innerText = "Enter a phone number";
-                        modalPhoneIcon.style.display = "none";
-                        modal.classList.add("display");
-                    } else {
-                        // DISPLAY DIALED NUMBER
-                        message.innerText = `You dialed number ${displayNumber.value}`;
-                        modal.classList.add("display");
-                        modalPhoneIcon.style.display = "";
+                    if (response.status == 200) {
+                        if (displayNumber.value.length !== 10) {
+                            message.innerText = "Enter a phone number";
+                            modalPhoneIcon.style.display = "none";
+                            modal.classList.add("display");
+                        } else {
+                            // DISPLAY DIALED NUMBER
+                            message.innerText = `You dialed number ${displayNumber.value}`;
+                            modal.classList.add("display");
+                            modalPhoneIcon.style.display = "";
+                        }
+
+                        console.log(response.status, response.ok); // 200 true
+                    }else{
+                         message.innerText = "Unsuccessful request";
+                         modalPhoneIcon.style.display = "none";
+                         modal.classList.add("display");
+
+                        console.log(response.status, response.ok); // 404 false
                     }
                 })
+
+                // .then((response) => {
+                //     console.log(response.status, response.ok); // 404 false
+                // })
+
                 .catch(() => {
                     this.message = "Ooops! Something went wrong!";
                 });

@@ -23,9 +23,9 @@ Route::post('contact', function (Request $request) {
 
     $dialed_number = $request->dialed_number;
 
-    return response()->json([
-        'success' => 200
-    ]);
+    //   return response()->json(['error' => 'Error msg'], 404);
+
+    return response()->json(['success' => 'Success msg'], 200);
 });
 
 
