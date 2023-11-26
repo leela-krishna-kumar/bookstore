@@ -3,11 +3,10 @@
 ## Features covered
 
 Bookstore features covered :
- * Searching data
- * Data pagination for min 100 records with 12 records in each page
  * Add/update/delete book records control
  * Add data using csv sheet
  * Dial Pad with alert on calling phone number
+ * API calls
 
 ## Technologies
 
