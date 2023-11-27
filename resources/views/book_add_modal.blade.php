@@ -41,7 +41,9 @@
                     <span>OR</span>
                 </div>
 
-                <form method="post" action="{{ url('post-add-book') }}" enctype="multipart/form-data">
+                <form action="javascript:void(0)" method="POST" id="add-book">
+
+                {{-- <form method="post" action="{{ url('post-add-book') }}" enctype="multipart/form-data"> --}}
                     @csrf
 
                     <div class='post-body post-content' id='post-body'>
@@ -113,3 +115,46 @@
         </div>
     </div>
 </div>
+
+
+
+<script type="module">
+
+                                                                $(document).ready(function($){
+
+                                                                                                // on submit...
+                                                                                                $('#add-book').submit(function(e){
+                                                                                                e.preventDefault();
+
+
+                                                                                                // ajax
+                                                                                                $.ajax({
+                                                                                                type:"POST",
+                                                                                                url: "{{ url('post-add-book') }}",
+                                                                                                data: $(this).serialize(), // get all form field value in serialize form
+                                                                                                success: function(response){
+                                                                                                $("#show_message").fadeIn();
+                                                                                                //$("#ajax-form").fadeOut();
+
+                                                                                                console.log(response);
+
+                                                                                                $('#add-book')[0].reset();
+
+
+                                                                                           //  location.reload();
+                                                                                                },
+
+                                                                                               error: function(response){
+                                                                                            $("#show_message").fadeIn();
+                                                                                            //$("#ajax-form").fadeOut();
+
+                                                                                            // $('#user-add-form')[0].reset();
+
+
+
+                                                                                            }
+                                                                                                });
+                                                                                                });
+                                                                                                return false;
+                                                                                                });
+</script>

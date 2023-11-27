@@ -144,7 +144,9 @@ class BookController extends Controller
 
         Alert::toast('Your book is succcesfully added! 🎉', 'success');
 
-        return redirect()->back();
+        //  return redirect()->back();
+
+        return response()->json(['success' => 'Success msg'], 200);
     }
 
     public function add_book_using_form($request)
