@@ -232,4 +232,58 @@ class BookController extends Controller
         }
 
     }
+
+    public function dashboard(){
+        //  $images = ['9780385547345.jpg', '9781668026274.jpg', '9781668016138.jpg', '9780804172707.jpg', '9780590353427.jpg', '9781668007877.jpg', '9781338885132.jpg'  ,'9781649374042.jpg', '9780385548953.jpg'];
+
+        $books_data = Cache::remember('books_data1', 600, function () {
+            return Books::orderBy('created_at', 'desc')->get();
+        });
+
+        // $books = Books::all();
+
+        //  foreach( $books as  $book){
+
+        //   //  $book->image = '/images/' . $images[rand(0,8)];
+
+        //      $book->delete();
+        // }
+
+        //  dd(Cache::get('books_data1'));
+
+        //  $books_title =   $books_data->unique('title');
+
+        //  dd($books_title, $books_title[0]['title'] );
+
+        // foreach( $books as  $book){
+
+        //     $book->image = '/images/' . $images[rand(0,8)];
+
+        //      $book->update();
+        // }
+
+        // $json = file_get_contents('https://fakerapi.it/api/v1/books?_quantity=100');
+
+
+        // $objs = (array) json_decode($json);
+
+        // foreach($objs['data'] as $obj){
+
+        //    $books = new Books();
+
+        //    $books->title = $obj->title;
+        //     $books->author = $obj->author;
+        //     $books->genre = $obj->genre;
+        //     $books->description = $obj->description;
+        //     $books->image = '/images/' . $images[rand(0, 8)];
+        //     $books->published = $obj->published;
+        //     $books->publisher = $obj->publisher;
+
+        //     $books->save();
+        // }
+
+        //    dd($objs['data'][0]);
+
+        return view('dashboard', compact('books_data'));
+    }
 }
