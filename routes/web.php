@@ -17,6 +17,8 @@ use Laravel\Scout\Scout;
 |
 */
 
+Route::get('/dashboard', [BookController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+
 // Route::resource('book', BookController::class);
 
 Route::post('post-add-book', [BookController::class, 'post_add_book']);
@@ -24,23 +26,19 @@ Route::post('post-update-book/{id}', [BookController::class, 'post_update_book']
 
 Route::get('delete-book/{id}', [BookController::class, 'book_delete']);
 
-Route::get('alpine', function () {
-    return view('alpine');
-});
-
-
-Route::get('/', function () {
-    return redirect('login');
-});
-
+Route::get('book-details/{id}', [BookController::class, 'book_details']);
 
 Route::get('dial-pad', function () {
     return view('dial_pad');
 })->name('dial-pad');
 
-Route::get('book-details/{id}', [BookController::class, 'book_details']);
 
+Route::get('alpine', function () {
+    return view('alpine');
+});
 
-Route::get('/dashboard', [BookController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', function () {
+    return redirect('login');
+});
 
 require __DIR__.'/auth.php';
